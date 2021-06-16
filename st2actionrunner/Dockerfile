@@ -28,7 +28,6 @@ RUN apt-get update -y \
 #     TERRAFORM_SHA256="8be33cc3be8089019d95eb8f546f35d41926e7c1e5deff15792e969dde573eb5"
 ENV TERRAFORM_VERSION="0.14.11" \
     TERRAFORM_SHA256="171ef5a4691b6f86eab524feaf9a52d5221c875478bd63dd7e55fef3939f7fd4"
-
 RUN curl -OL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && echo "${TERRAFORM_SHA256} terraform_${TERRAFORM_VERSION}_linux_amd64.zip | sha256sum --check" \
     && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /opt/terraform_${TERRAFORM_VERSION}_linux_amd64 \
