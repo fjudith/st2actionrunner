@@ -5,10 +5,12 @@ on:
   paths:
     - '.github/workflows/container_images.yaml'
     - 'st2actionrunner/**'
+    - 'VERSION'
   pull_request:
     paths:
     - '.github/workflows/container_images.yaml'
     - 'st2actionrunner/**'
+    - 'VERSION'
 
 env:
   REPO: "docker.io/fjudith"
