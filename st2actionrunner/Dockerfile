@@ -26,8 +26,8 @@ RUN apt-get update -y \
 # --------------------------------------------------
 # ENV TERRAFORM_VERSION="1.0.0" \
 #     TERRAFORM_SHA256="8be33cc3be8089019d95eb8f546f35d41926e7c1e5deff15792e969dde573eb5"
-ENV TERRAFORM_VERSION="0.14.4" \
-    TERRAFORM_SHA256="042f1f4fb47696b3442eca12bce7cce6de0b477b299503ddad6b8bc3777a54b5"
+ENV TERRAFORM_VERSION="0.14.11" \
+    TERRAFORM_SHA256="171ef5a4691b6f86eab524feaf9a52d5221c875478bd63dd7e55fef3939f7fd4"
 
 RUN curl -OL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && echo "${TERRAFORM_SHA256} terraform_${TERRAFORM_VERSION}_linux_amd64.zip | sha256sum --check" \
@@ -51,7 +51,7 @@ RUN apt-add-repository ppa:ansible/ansible \
 # --------------------------------------------------
 # Salt
 # --------------------------------------------------
-ENV SALT_VERSION="3002.5"
+ENV SALT_VERSION="3003"
 RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/18.04/amd64/archive/${SALT_VERSION}/salt-archive-keyring.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg] https://repo.saltproject.io/py3/ubuntu/18.04/amd64/archive/${SALT_VERSION} bionic main" | sudo tee /etc/apt/sources.list.d/salt.list \
     && apt-get update -y \
