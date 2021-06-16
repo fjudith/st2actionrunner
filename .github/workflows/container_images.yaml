@@ -1,0 +1,67 @@
+name: Container images
+
+on:
+ push:
+  paths:
+    - '.github/workflows/container_images.yaml'
+    - 'st2actionrunner/**'
+  pull_request:
+    paths:
+    - '.github/workflows/container_images.yaml'
+    - 'st2actionrunner/**'
+
+env:
+  REPO: "docker.io/fjudith"
+
+jobs:
+  image-build:
+    name: '${{ matrix.image }}'
+    runs-on: ubuntu-20.04
+    
+    strategy:
+      matrix:
+        image:
+          - st2actionrunner
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+    
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          install: true
+
+      - name: Set ENV variables
+        run: |
+          echo SEMVER_MAJOR=$(cat VERSION | awk -F '.' '{print $1}') >> $GITHUB_ENV
+          echo SEMVER_MINOR=$(cat VERSION | awk -F '.' '{print $1"."$2}') >> $GITHUB_ENV
+          echo SEMVER_PATCH=$(cat VERSION | awk -F '.' '{print $1"."$2"."$3}') >> $GITHUB_ENV
+          echo BUILD_DATE=$(date -u "+%Y-%m-%d %H:%M:%S.%s") >> $GITHUB_ENV
+      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+      - name: Build image
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          tags: |
+            ${{ env.REPO }}/${{ matrix.image }}:${{ env.SEMVER_MAJOR }}
+            ${{ env.REPO }}/${{ matrix.image }}:${{ env.SEMVER_MINOR }}
+            ${{ env.REPO }}/${{ matrix.image }}:${{ env.SEMVER_PATCH }}
+          build-args: |
+            VCS_REF=${{ github.ref }}
+            VERSION=${{ env.SEMVER_PATCH }}
+            BUILD_DATE=${{ env.BUILD_DATE }}
+          context: ${{ matrix.image }}/
+          file: ${{ matrix.image }}/Dockerfile
+          platforms: linux/amd64
+          push: true
