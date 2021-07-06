@@ -2,7 +2,7 @@
 
 ## Version
 
-`3.4.1` [st2actionrunner/Dockerfile](./st2actionrunner/Dockerfile)
+`3.5.0` [st2actionrunner/Dockerfile](./st2actionrunner/Dockerfile)
 
 ## Introduction
 
