@@ -38,7 +38,7 @@ RUN curl -OL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terra
 # Ansible
 # https://launchpad.net/~ansible/+archive/ubuntu/ansible
 # --------------------------------------------------
-ENV ANSIBLE_VERSION="2.9.22"
+ENV ANSIBLE_VERSION="2.9.23"
 RUN apt-add-repository ppa:ansible/ansible \
     && apt-get update  -y \
     && apt-get install -y \
