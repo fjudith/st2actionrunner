@@ -1,4 +1,4 @@
-FROM stackstorm/st2actionrunner:3.4.1
+FROM stackstorm/st2actionrunner:3.5.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -50,7 +50,7 @@ RUN apt-add-repository ppa:ansible/ansible \
 # --------------------------------------------------
 # Salt
 # --------------------------------------------------
-ENV SALT_VERSION="3003"
+ENV SALT_VERSION="3004"
 RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/18.04/amd64/archive/${SALT_VERSION}/salt-archive-keyring.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg] https://repo.saltproject.io/py3/ubuntu/18.04/amd64/archive/${SALT_VERSION} bionic main" | sudo tee /etc/apt/sources.list.d/salt.list \
     && apt-get update -y \
