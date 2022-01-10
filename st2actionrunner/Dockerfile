@@ -1,4 +1,4 @@
-FROM stackstorm/st2actionrunner:3.5.0
+FROM stackstorm/st2actionrunner:3.6.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
