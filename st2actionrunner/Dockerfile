@@ -55,10 +55,7 @@ RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.salt
     && apt-get update -y \
     && apt-get install -y \
         salt-common \
-        salt-master \
-        salt-minion \
         salt-ssh \
-        salt-syndic \
         salt-cloud \
         salt-api \
     && apt-get autoremove -y --purge \
