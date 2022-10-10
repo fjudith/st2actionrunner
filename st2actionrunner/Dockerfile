@@ -2,7 +2,7 @@ FROM stackstorm/st2actionrunner:3.7.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ENV PYTHONHOME="/usr/bin/python3"
+ENV PYTHONHOME="/usr/local"
 
 RUN apt-get update -y \
     && apt-get install -y \
