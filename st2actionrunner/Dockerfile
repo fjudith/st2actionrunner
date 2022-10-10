@@ -37,11 +37,11 @@ RUN curl -OL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terra
 # Ansible
 # https://launchpad.net/~ansible/+archive/ubuntu/ansible
 # --------------------------------------------------
-ENV ANSIBLE_VERSION="2.9.22"
+ENV ANSIBLE_VERSION="2.9.27"
 RUN apt-add-repository ppa:ansible/ansible \
     && apt-get update  -y \
     && apt-get install -y \
-        ansible=${ANSIBLE_VERSION}-1ppa~bionic \
+        "ansible=${ANSIBLE_VERSION}-1ppa~bionic" \
     && apt-get autoremove -y --purge \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
