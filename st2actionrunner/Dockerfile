@@ -41,4 +41,5 @@ ENV ANSIBLE_VERSION="2.9.27"
 RUN pip3 install ansible==${ANSIBLE_VERSION}
 
 
-ENV PYTHONHOME="/usr/lib/python3.8"
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+    && python -m pip install --upgrade pip
