@@ -2,8 +2,6 @@ FROM stackstorm/st2actionrunner:3.7.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ENV PYTHONHOME="/usr/local"
-
 RUN apt-get update -y \
     && apt-get install -y \
         build-essential \
@@ -43,3 +41,4 @@ ENV ANSIBLE_VERSION="2.9.27"
 RUN pip3 install ansible==${ANSIBLE_VERSION}
 
 
+ENV PYTHONHOME="/usr/lib/python3.8"
