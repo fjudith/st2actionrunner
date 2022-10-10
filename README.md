@@ -2,7 +2,7 @@
 
 ## Version
 
-`3.6.0` [st2actionrunner/Dockerfile](./st2actionrunner/Dockerfile)
+`3.7.0` [st2actionrunner/Dockerfile](./st2actionrunner/Dockerfile)
 
 ## Introduction
 
@@ -10,4 +10,4 @@ This image is custom version of the [stackstorm/st2actionrunner](https://hub.doc
 
 * [Terrafrom](https://terraform.io) 0.14.11
 * [Ansible](https://ansible.com) 2.9.22
-* [Salt](https://saltproject.io) 3003
+* [Salt](https://saltproject.io) 3005.1

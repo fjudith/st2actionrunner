@@ -1,4 +1,4 @@
-FROM stackstorm/st2actionrunner:3.6.0
+FROM stackstorm/st2actionrunner:3.7.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -24,10 +24,9 @@ RUN apt-get update -y \
 # --------------------------------------------------
 # Terraform
 # --------------------------------------------------
-# ENV TERRAFORM_VERSION="1.0.0" \
-#     TERRAFORM_SHA256="8be33cc3be8089019d95eb8f546f35d41926e7c1e5deff15792e969dde573eb5"
-ENV TERRAFORM_VERSION="0.14.11" \
-    TERRAFORM_SHA256="171ef5a4691b6f86eab524feaf9a52d5221c875478bd63dd7e55fef3939f7fd4"
+# https://releases.hashicorp.com/terraform/1.3.2/
+ENV TERRAFORM_VERSION="1.3.2" \
+    TERRAFORM_SHA256="6372e02a7f04bef9dac4a7a12f4580a0ad96a37b5997e80738e070be330cb11c"
 RUN curl -OL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && echo "${TERRAFORM_SHA256} terraform_${TERRAFORM_VERSION}_linux_amd64.zip | sha256sum --check" \
     && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /opt/terraform_${TERRAFORM_VERSION}_linux_amd64 \
@@ -50,7 +49,7 @@ RUN apt-add-repository ppa:ansible/ansible \
 # --------------------------------------------------
 # Salt
 # --------------------------------------------------
-ENV SALT_VERSION="3004"
+ENV SALT_VERSION="3005.1"
 RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/18.04/amd64/archive/${SALT_VERSION}/salt-archive-keyring.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg] https://repo.saltproject.io/py3/ubuntu/18.04/amd64/archive/${SALT_VERSION} bionic main" | sudo tee /etc/apt/sources.list.d/salt.list \
     && apt-get update -y \
