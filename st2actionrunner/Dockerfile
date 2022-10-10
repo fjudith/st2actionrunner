@@ -9,6 +9,7 @@ RUN apt-get update -y \
         libssl-dev \
         libffi-dev \
         python3-dev \
+        python3-pip \
         krb5-config \
         libkrb5-dev \
         libsasl2-dev \
@@ -35,16 +36,9 @@ RUN curl -OL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terra
 
 # --------------------------------------------------
 # Ansible
-# https://launchpad.net/~ansible/+archive/ubuntu/ansible
 # --------------------------------------------------
 ENV ANSIBLE_VERSION="2.9.27"
-RUN apt-add-repository ppa:ansible/ansible \
-    && apt-get update  -y \
-    && apt-get install -y \
-        "ansible=${ANSIBLE_VERSION}" \
-    && apt-get autoremove -y --purge \
-    && apt-get clean \
-    && rm -r /var/lib/apt/lists/*
+RUN pip3 install ansible==${ANSIBLE_VERSION}
 
 # --------------------------------------------------
 # Salt
