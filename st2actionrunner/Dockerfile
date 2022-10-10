@@ -43,12 +43,15 @@ RUN pip3 install ansible==${ANSIBLE_VERSION}
 # --------------------------------------------------
 # Salt
 # --------------------------------------------------
-ENV SALT_VERSION="3005.1"
+ENV SALT_VERSION="3005"
 RUN curl -fsSL -o /usr/share/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/py3/ubuntu/18.04/amd64/archive/${SALT_VERSION}/salt-archive-keyring.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/salt-archive-keyring.gpg] https://repo.saltproject.io/py3/ubuntu/18.04/amd64/archive/${SALT_VERSION} bionic main" | sudo tee /etc/apt/sources.list.d/salt.list \
     && apt-get update -y \
     && apt-get install -y \
         salt-common \
+        salt-master \
+        salt-minion \
+        salt-syndic\
         salt-ssh \
         salt-cloud \
         salt-api \
