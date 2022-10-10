@@ -10,4 +10,4 @@ This image is custom version of the [stackstorm/st2actionrunner](https://hub.doc
 
 * [Terrafrom](https://terraform.io) 1.3.2
 * [Ansible](https://ansible.com) 2.9.27
-* [Salt](https://saltproject.io) 3005.1
+
